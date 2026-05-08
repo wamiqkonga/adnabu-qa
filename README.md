@@ -37,7 +37,7 @@ Make sure the following are installed on your machine before you begin:
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/wamiqkongwani/adnabu-qa.git
+git clone https://github.com/wamiqkonga/adnabu-qa.git
 cd adnabu-qa
 ```
 
