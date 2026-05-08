@@ -1,0 +1,107 @@
+# Test Cases — AdNabu Test Store
+
+**Application:** https://adnabu-store-assignment1.myshopify.com/  
+**Store Password:** AdNabuQA  
+**Tester:** QA Engineer Assignment  
+
+---
+
+## A) Product Search
+
+---
+
+### TC-S-01 | Search with a valid product name (Positive)
+
+**Preconditions:** User is on the store homepage (password entered).
+
+**Steps:**
+- Click the search icon in the navigation bar
+- Type a known product name (e.g., `shirt`) into the search field
+- Press Enter or click the search button
+
+**Expected Result:**
+- Search results page loads successfully
+- At least one product matching the search term is displayed
+- Product names in results visibly relate to the query
+
+---
+
+### TC-S-02 | Search with a non-existent product name (Negative)
+
+**Preconditions:** User is on the store homepage.
+
+**Steps:**
+- Click the search icon
+- Enter a term that matches no product (e.g., `xyznonexistentitem999`)
+- Press Enter
+
+**Expected Result:**
+- A "no results found" or equivalent message is displayed
+- No product cards are rendered
+- The page does not error out or crash
+
+---
+
+### TC-S-03 | Search with special characters (Edge Case)
+
+**Preconditions:** User is on the store homepage.
+
+**Steps:**
+- Click the search icon
+- Enter a string of special characters (e.g., `@#$%^&*!`)
+- Press Enter
+
+**Expected Result:**
+- Application handles the input gracefully — no 500 error, no unhandled exception
+- Either a "no results" message is shown, or the search field rejects invalid characters
+- The page remains fully functional after the attempt
+
+---
+
+## B) Add to Cart
+
+---
+
+### TC-C-01 | Add an in-stock product to cart (Positive)
+
+**Preconditions:** User has navigated to a product page for an in-stock item.
+
+**Steps:**
+- Select a product variant if required (e.g., size, colour)
+- Click the **Add to Cart** button
+
+**Expected Result:**
+- The cart item count increments by 1 (visible in the nav icon)
+- A success notification or slide-out cart drawer confirms the item was added
+- The product name and price in the cart match the selected product
+
+---
+
+### TC-C-02 | Attempt to add an out-of-stock product (Negative)
+
+**Preconditions:** User has navigated to a product page where the item/variant is out of stock.
+
+**Steps:**
+- Navigate to a product with an out-of-stock variant
+- Select the unavailable variant
+
+**Expected Result:**
+- The **Add to Cart** button is disabled or replaced with a "Sold Out" label
+- Clicking (if still clickable) does not add anything to cart
+- Cart count remains unchanged
+
+---
+
+### TC-C-03 | Add the same product multiple times and verify quantity (Edge Case)
+
+**Preconditions:** User is on a product page with an in-stock item.
+
+**Steps:**
+- Click **Add to Cart** once — note cart count
+- Navigate back to the same product page
+- Click **Add to Cart** again
+
+**Expected Result:**
+- Cart count increments to 2 (or the quantity for that line item shows 2)
+- The cart does not create duplicate line entries — instead the quantity is updated
+- Total price in cart reflects quantity × unit price correctly
